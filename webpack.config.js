@@ -1,3 +1,10 @@
+let mode = 'development';
+
+// set to 'production' via node script
+if(process.env.NODE_ENV === 'production'){
+    mode = 'production';
+}
+
 module.exports = {
     mode: 'development',
     module: {
@@ -15,7 +22,8 @@ module.exports = {
         ]
     },
     // Normalizes webpack output file, "main.js", for inspection
-    devtool: false,
+    // devtool: false,
+    devtool: 'source-map',
     devServer: {
         // In new Webpack Version, no longer "contentBase" config.
         // Needs relative path
