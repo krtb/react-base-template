@@ -1,4 +1,5 @@
-import './styles/index.css'
+// import in order for webpack to view/process file
+import './styles/index.scss'
 
 const trashBurgerRecipe = {
     trash: 1,
