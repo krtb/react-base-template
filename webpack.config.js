@@ -1,9 +1,12 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 let mode = 'development';
+let target = 'web'
 
 // set to 'production' via node script
 if(process.env.NODE_ENV === 'production'){
     mode = 'production';
+    // if in production, use browserslistrc as target. Otherwise, web.
+    target = 'browserslist';
 }
 
 module.exports = {
@@ -11,8 +14,13 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/i,
-                use: [ MiniCssExtractPlugin.loader, 'css-loader']
+                test: /\.(s[ac]|c)ss$/i,
+                // last loader in list is first used
+                use: [ 
+                    MiniCssExtractPlugin.loader, 
+                    'css-loader', 
+                    'postcss-loader',
+                    'sass-loader']
             },
             {
                 // regex
